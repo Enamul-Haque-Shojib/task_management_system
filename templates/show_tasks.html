@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- {% for i in data %}
+    <h2>{{i.taskTitle}}</h2>
+    <p>{{i.taskDescription}}</p>
+    <p>
+            {% for j in i.categories.all %}
+                <span>{{j.name}}</span>
+            {% endfor %}
+        
+      </p>
+    <p>{{i.completed}}</p>
+    <p>{{i.date.date}}</p>
+    {% if i.completed == True %}
+      <h3>COMPLETED</h3>
+    {% else %}
+        <a href="{% url 'edit_task' i.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'delete_task' i.id %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+{% endfor %} -->
+
+
+<div class="container mb-5">
+  <h1 class="text-center py-3 text-success">Task Management System</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for i in data %}
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">{{i.taskTitle}}</h5>
+          <p class="card-text">{{i.taskDescription}}</p>
+          <p class="card-text">
+            {% for j in i.categories.all %}
+                <span class="bg-primary p-2 fs-6 text-white rounded">{{j.name}}</span>
+            {% endfor %}
+        
+          </p>
+          <p class="card-text">{{i.date.date}}</p>
+          {% if i.completed == True %}
+            <span class="bg-success p-2 rounded text-white">Completed</span>
+          {% else %}
+            <a href="{% url 'edit_task' i.id %}" class="btn btn-warning text-white">Edit</a>
+            <a href="{% url 'delete_task' i.id %}" class="btn btn-danger">Delete</a>
+          {% endif %}
+    
+          
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+{% endblock %}
